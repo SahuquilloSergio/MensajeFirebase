@@ -89,7 +89,12 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                Log.d(TAG, "Datos cambiados: " + (p0.getValue() as HashMap<*,*>).toString())
+                // creo un objeto para recojer los datos cambiados
+                var misDatosCambiados = Datos("","", Date())
+                // introduzco en el objeto los datos cambiados que vienen en el snapdhot
+                misDatosCambiados = p0.getValue(Datos::class.java)!!
+                // muestro datos desde el objeto
+                Log.d(TAG, "Datos cambiados: " + misDatosCambiados.nombre + " " + misDatosCambiados.hora.time)
             }
 
             override fun onChildMoved(p0: DataSnapshot, p1: String?) {
